@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>bot</title>
+    <style>
+        /* Стили для чатбокса */
+        #chatbox {
+            width: 300px; /* Ширина чатбокса */
+            height: 400px; /* Высота чатбокса */
+            border: 1px solid #ccc; /* Граница чатбокса */
+            overflow-y: scroll; /* Прокрутка по вертикали */
+            padding: 10px; /* Отступы внутри чатбокса */
+        }
+        /* Стили для поля ввода пользователя */
+        #userInput {
+            width: 240px; /* Ширина поля ввода */
+        }
+    </style>
+</head>
+<body>
+    <!-- Навигационная панель -->
+    <nav class="navbar navbar-dark bg-primary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">CapybaraSmart</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="index.html">Главная страница</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="p.html">Как пользоваться ботом</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="cap.html">Капибара бот</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="seal.html">Тюлень бот</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="svinks.html">Морская свинка бот</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="abc.html">Создатель сайта</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container mt-5">
+        <h1>Чат с Капибарой</h1>
+        <div id="chatbox"></div> <!-- Чатбокс для отображения сообщений -->
+        <input type="text" id="userInput" placeholder="Введите ваше сообщение..."> <!-- Поле ввода для пользователя -->
+        <button id="sendBtn">Отправить</button> <!-- Кнопка для отправки сообщения -->
+    </div>
+    <script>
+        // Получаем элементы из DOM
+        const chatbox = document.getElementById('chatbox');
+        const userInput = document.getElementById('userInput');
+        const sendBtn = document.getElementById('sendBtn');
+
+        // Обработчик события нажатия кнопки "Отправить"
+        sendBtn.addEventListener('click', () => {
+            const userMessage = userInput.value; // Получаем сообщение пользователя
+            if (userMessage) {
+                addMessage('Вы: ' + userMessage); // Добавляем сообщение пользователя в чат
+                userInput.value = ''; // Очищаем поле ввода
+                respondToUser(userMessage); // Генерируем ответ бота
+            }
+        });
+
+        // Функция для добавления сообщения в чат
+        function addMessage(message) {
+            const messageElement = document.createElement('div'); // Создаем новый элемент для сообщения
+            messageElement.textContent = message; // Устанавливаем текст сообщения
+            chatbox.appendChild(messageElement); // Добавляем сообщение в чатбокс
+            chatbox.scrollTop = chatbox.scrollHeight; // Прокручиваем чат вниз
+        }
+
+        // Функция для генерации ответа бота
+        function respondToUser(message) {
+            let response; // Переменная для хранения ответа
+            message = message.toLowerCase(); // Приводим сообщение к нижнему регистру
+
+            // Условия для определения ответа бота
+            if (message.includes('капибара')) {
+                response = 'Капибара — это самый крупный в мире грызун, обитающий в Южной Америке.';
+            } 
+            else if (message.includes('что едят капибары')) {
+                response = 'Капибары травоядные и едят траву, водные растения, кору и фрукты.';
+            } 
+            else if (message.includes('привет')) {
+                response = 'Привет!';
+            } 
+            else if (message.includes('как дела')) {
+                response = 'У меня всё хорошо, а у тебя?';
+            } 
+            else if (message.includes('эминем')) {
+                response = 'Эминем, настоящее имя Маршалл Брюс Мэтерс III, родился 17 октября 1972 года. Он является американским рэпером, автором песен и продюсером, который считается одним из величайших и самых влиятельных рэперов всех времен. Эминем известен своим уникальным стилем, острыми текстами и способностью затрагивать сложные темы в своей музыке.';
+            } 
+            else if (message.includes('где живут капибары?')) {
+                response = 'Капибары живут в Южной Америке, в таких странах как: Бразилия, Аргентина, Боливия, Колумбия и Венесуэла';
+            } 
+            else if (message.includes('Каковы основные угрозы для капибар?')) {
+                response = 'Основные угрозы для капибар включают утрату среды обитания и охоту со стороны хищников и человека.';
+            } 
+            else if (message.includes('Могут ли капибары жить в домашних условиях?')) {
+                response = 'Капибары могут быть домашними питомцами, но требуют много пространства, компании и специальных условий для содержания.';
+            }
+            else if (message.includes('шпицы')) {
+                response = 'Померанский шпиц — ласковая и энергичная порода, которую любят во всем мире. Они могут быть своенравны и капризны, но все равно продолжают оставаться очень популярными среди владельцев собак. Померанский шпиц или миниатюрный шпиц (нем. deutsch Zwergspitz) — порода собак, относящаяся к категории «Шпицы и породы примитивного типа» по классификации МКФ. померанского шпица мягкая набивная пушистая шерсть, короткая небольшая мордочка и пушистый лоб. Шпицы не часто линяют.';
+            }
+            else {
+                response = 'Извините, я не знаю ответа на этот вопрос.';
+            }
+
+            addMessage('Капибара Бот: ' + response); // Добавляем ответ бота в чат
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</body>
+</html>

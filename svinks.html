@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>bot</title>
+    <style>
+        /* Стили для чатбокса */
+        #chatbox {
+            width: 300px; /* Ширина чатбокса */
+            height: 400px; /* Высота чатбокса */
+            border: 1px solid #ccc; /* Граница чатбокса */
+            overflow-y: scroll; /* Прокрутка по вертикали */
+            padding: 10px; /* Отступы внутри чатбокса */
+        }
+        /* Стили для поля ввода пользователя */
+        #userInput {
+            width: 240px; /* Ширина поля ввода */
+        }
+    </style>
+</head>
+<body>
+    <!-- Навигационная панель -->
+    <nav class="navbar navbar-dark bg-primary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">CapybaraSmart</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="index.html">Главная страница</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="p.html">Как пользоваться ботом</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="cap.html">Капибара бот</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="seal.html">Тюлень бот</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="svinks.html">Морская свинка бот</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="abc.html">Создатель сайта</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container mt-5">
+        <h1>Чат с Капибарой</h1>
+        <div id="chatbox"></div> <!-- Чатбокс для отображения сообщений -->
+        <input type="text" id="userInput" placeholder="Введите ваше сообщение..."> <!-- Поле ввода для пользователя -->
+        <button id="sendBtn">Отправить</button> <!-- Кнопка для отправки сообщения -->
+    </div>
+    <script>
+        // Получаем элементы из DOM
+        const chatbox = document.getElementById('chatbox');
+        const userInput = document.getElementById('userInput');
+        const sendBtn = document.getElementById('sendBtn');
+
+        // Обработчик события нажатия кнопки "Отправить"
+        sendBtn.addEventListener('click', () => {
+            const userMessage = userInput.value; // Получаем сообщение пользователя
+            if (userMessage) {
+                addMessage('Вы: ' + userMessage); // Добавляем сообщение пользователя в чат
+                userInput.value = ''; // Очищаем поле ввода
+                respondToUser(userMessage); // Генерируем ответ бота
+            }
+        });
+
+        // Функция для добавления сообщения в чат
+        function addMessage(message) {
+            const messageElement = document.createElement('div'); // Создаем новый элемент для сообщения
+            messageElement.textContent = message; // Устанавливаем текст сообщения
+            chatbox.appendChild(messageElement); // Добавляем сообщение в чатбокс
+            chatbox.scrollTop = chatbox.scrollHeight; // Прокручиваем чат вниз
+        }
+
+        // Функция для генерации ответа бота
+        function respondToUser(message) {
+            let response; // Переменная для хранения ответа
+            message = message.toLowerCase(); // Приводим сообщение к нижнему регистру
+
+            // Условия для определения ответа бота
+            if (message.includes('морская свинка')) {
+                response = 'Морская свинка (лат. Cavia aperea f. porcellus) — это домашний грызун, принадлежащий к семейству свинковых (Caviidae). Эти милые животные известны своей дружелюбной натурой и общительностью, что делает их популярными домашними питомцами.';
+            } 
+            else if (message.includes('что едят водосвинки?')) {
+                response = 'Морские свинки — это травоядные животные, и их рацион должен быть разнообразным и сбалансированным для поддержания здоровья. Основные компоненты их питания включают: Сено, овощи, фрукты';
+            } 
+            else if (message.includes('привет')) {
+                response = 'Привет!';
+            } 
+            else if (message.includes('как дела')) {
+                response = 'У меня всё хорошо, а у тебя?';
+            } 
+            else if (message.includes('где живут водные свинки?')) {
+                response = 'Морские свинки (или водяные свинки) являются домашними животными и не встречаются в дикой природе. Они происходят из Южной Америки, где их предки обитали в высоких горах и лесах. В настоящее время морские свинки разводятся по всему миру как домашние питомцы.';
+            } 
+            
+            else if (message.includes('чихуахуа')) {
+                response = 'Чихуа́хуа (исп. Chihuahua [tʃiˈwawa]) — собака-компаньон. Считается самой маленькой собакой в мире и носит имя мексиканского штата Чиуауа. Есть предположение, что предки этой собаки жили в дикой природе, и в эпоху цивилизации тольтеков были одомашнены ими[1]. Имеет компактный корпус и отличается бойким и смелым характером. Кинологи утверждают, что эта порода занимает одно из самых значительных мест в истории древнего и современного собаководства. Чихуахуа оказала значительное влияние на формирование других карликовых пород. Однако у породы чихуахуа есть ряд достоинств и преимуществ перед другими миниатюрными собаками: крепкое здоровье, высокий интеллект, контактность и покладистый характер[2].';
+            }
+            else {
+                response = 'Извините, я не знаю ответа на этот вопрос.';
+            }
+
+            addMessage('Морская свинка Бот: ' + response); // Добавляем ответ бота в чат
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</body>
+</html>
